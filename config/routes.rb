@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post 'denunciations', to: 'denunciations#create'
+  
   get 'reports/abducted_survivors'
   get 'reports/non_abducted_survivors'
   get 'reports/abducted_percentage'

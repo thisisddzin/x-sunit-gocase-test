@@ -2,6 +2,7 @@ class DenunciationsController < ApplicationController
   after_action :verify_survivor_to_get_abducted, only: [:create]
   before_action :set_survivor, only: [:create]
 
+  # POST /denunciations
   def create
       @denunciation = Denunciation.new(denunciation_params)
       if @survivor.abducted

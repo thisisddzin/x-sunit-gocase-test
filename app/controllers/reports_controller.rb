@@ -4,6 +4,7 @@ class ReportsController < ApplicationController
   # GET /reports/abducted_percentage
   def abducted_percentage
     render json: {
+      survivors_count: @survivors_total_count.to_i,
       non_abducted: {
         amount: @non_abducted_count.to_i,
         percentage: "#{@non_abducted_percentage}%"
@@ -17,12 +18,12 @@ class ReportsController < ApplicationController
 
   # GET /reports/abducted_survivors
   def abducted_survivors
-    render json: Survivor.all.where(abducted: true)
+    render json: Survivor.all.where(abducted: true).order(:name), include: [:denunciations]
   end
 
   # GET /reports/non_abducted_survivors
   def non_abducted_survivors
-    render json: Survivor.all.where(abducted: false)
+    render json: Survivor.all.where(abducted: false).order(:name), include: [:denunciations]
   end
 
   private
