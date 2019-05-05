@@ -27,7 +27,7 @@ class SurvivorsController < ApplicationController
   # PATCH/PUT /survivors/1
   def update
     if !@survivor.abducted
-    
+      
       if @survivor.update(survivor_params)
         render json: @survivor, include: [:location]
       else
