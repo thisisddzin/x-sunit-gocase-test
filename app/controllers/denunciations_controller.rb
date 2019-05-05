@@ -1,16 +1,25 @@
 class DenunciationsController < ApplicationController
+  after_action :verify_survivor_to_get_abducted, only: [:create]
+  before_action :set_survivor, only: [:create]
+
   def create
       @denunciation = Denunciation.new(denunciation_params)
-      if !verify_denunciation(denunciation_params)
-        if @denunciation.save
-          render json: @denunciation, status: :created
-        else
-          render json: @denunciation.errors, status: :unprocessable_entity
-        end
-      else
+      if @survivor.abducted
         render json: {
-          message: "You already denounced him."
+          message: "Already abducted."
         }
+      else
+        if !verify_denunciation(denunciation_params)
+          if @denunciation.save
+            render json: @denunciation, status: :created
+          else
+            render json: @denunciation.errors, status: :unprocessable_entity
+          end
+        else
+          render json: {
+            message: "You already denounced him."
+          }
+        end
       end
   end
 
@@ -23,6 +32,17 @@ class DenunciationsController < ApplicationController
     end
 
     def verify_denunciation(params)
-      Survivor.find(params[:survivor_id]).denunciations.find_by(sender_id: params[:sender_id]).present?
+      @survivor.denunciations.find_by(sender_id: params[:sender_id]).present?
+    end
+
+    def verify_survivor_to_get_abducted
+      if @survivor.denunciations.count > 2 
+        @survivor.abducted = true
+        @survivor.save!
+      end
+    end
+
+    def set_survivor 
+      @survivor = Survivor.find(params[:survivor_id])
     end
 end
