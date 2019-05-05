@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_165349) do
+ActiveRecord::Schema.define(version: 2019_05_05_202039) do
+
+  create_table "denunciations", force: :cascade do |t|
+    t.integer "survivor_id"
+    t.integer "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sender_id"], name: "index_denunciations_on_sender_id"
+    t.index ["survivor_id"], name: "index_denunciations_on_survivor_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "latitude"
