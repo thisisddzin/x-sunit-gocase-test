@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_171532) do
+ActiveRecord::Schema.define(version: 2019_05_05_165349) do
 
   create_table "locations", force: :cascade do |t|
     t.string "latitude"
@@ -19,15 +19,6 @@ ActiveRecord::Schema.define(version: 2019_05_05_171532) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["survivor_id"], name: "index_locations_on_survivor_id"
-  end
-
-  create_table "reports", force: :cascade do |t|
-    t.integer "sender_id"
-    t.integer "victim_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sender_id"], name: "index_reports_on_sender_id"
-    t.index ["victim_id"], name: "index_reports_on_victim_id"
   end
 
   create_table "survivors", force: :cascade do |t|

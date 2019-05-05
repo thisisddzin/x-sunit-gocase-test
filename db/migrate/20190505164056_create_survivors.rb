@@ -4,7 +4,7 @@ class CreateSurvivors < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :age
       t.string :gender
-      t.boolean :abducted
+      t.boolean :abducted, default: false
 
       t.timestamps
     end
