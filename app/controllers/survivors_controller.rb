@@ -26,10 +26,18 @@ class SurvivorsController < ApplicationController
 
   # PATCH/PUT /survivors/1
   def update
-    if @survivor.update(survivor_params)
-      render json: @survivor, include: [:location]
+    if !@survivor.abducted
+    
+      if @survivor.update(survivor_params)
+        render json: @survivor, include: [:location]
+      else
+        render json: @survivor.errors, status: :unprocessable_entity
+      end
+
     else
-      render json: @survivor.errors, status: :unprocessable_entity
+      render json: {
+        message: "Survivor abducted, so you can't update her."
+      }
     end
   end
 
@@ -46,6 +54,12 @@ class SurvivorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def survivor_params
-      params.require(:survivor).permit(:name, :age, :gender, :abducted, location_attributes: [:id, :latitude, :longitude])
+      params.require(:survivor).permit(
+        :name, 
+        :age, 
+        :gender, 
+        :abducted, 
+        location_attributes: [:id, :latitude, :longitude]
+      )
     end
 end
