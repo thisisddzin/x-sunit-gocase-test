@@ -1,3 +1,3 @@
 class DenunciationSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :sender_id, :survivor
 end
