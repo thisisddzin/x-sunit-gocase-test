@@ -5,12 +5,12 @@ class SurvivorsController < ApplicationController
   def index
     @survivors = Survivor.all.order(:name)
 
-    render json: @survivors, include: [:location]
+    render json: @survivors
   end
 
   # GET /survivors/1
   def show
-    render json: @survivor, include: [:location]
+    render json: @survivor
   end
 
   # POST /survivors
@@ -18,7 +18,7 @@ class SurvivorsController < ApplicationController
     @survivor = Survivor.new(survivor_params)
 
     if @survivor.save
-      render json: @survivor, status: :created, location: @survivor, include: [:location]
+      render json: @survivor, status: :created, location: @survivor, include: [:denunciations]
     else
       render json: @survivor.errors, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class SurvivorsController < ApplicationController
     if !@survivor.abducted
       
       if @survivor.update(survivor_params)
-        render json: @survivor, include: [:location]
+        render json: @survivor, include: [:denunciations]
       else
         render json: @survivor.errors, status: :unprocessable_entity
       end

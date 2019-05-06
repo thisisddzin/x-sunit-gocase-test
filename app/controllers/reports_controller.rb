@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_percentage, only: [:abducted_percentage]
+  before_action :set_calcs, only: [:abducted_percentage]
 
   # GET /reports/abducted_percentage
   def abducted_percentage
@@ -18,16 +18,16 @@ class ReportsController < ApplicationController
 
   # GET /reports/abducted_survivors
   def abducted_survivors
-    render json: Survivor.all.where(abducted: true).order(:name), include: [:denunciations]
+    render json: Survivor.all.where(abducted: true).order(:name)
   end
 
   # GET /reports/non_abducted_survivors
   def non_abducted_survivors
-    render json: Survivor.all.where(abducted: false).order(:name), include: [:denunciations]
+    render json: Survivor.all.where(abducted: false).order(:name)
   end
 
   private
-    def set_percentage 
+    def set_calcs 
       @non_abducted_count = Survivor.all.where(abducted: false).count.to_f
       @abducted_count = Survivor.all.where(abducted: true).count.to_f
       @survivors_total_count = @non_abducted_count + @abducted_count

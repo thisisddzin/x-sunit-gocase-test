@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'denunciations', to: 'denunciations#index'
   post 'denunciations', to: 'denunciations#create'
   
   get 'reports/abducted_survivors'
