@@ -17,6 +17,14 @@ class SurvivorsController < ApplicationController
   def create
     @survivor = Survivor.new(survivor_params)
 
+    if params[:location_attributes].blank?
+      Location.create!(
+        latitude: Faker::Address.latitude,
+        longitude: Faker::Address.latitude,
+        survivor: @survivor
+      )
+    end
+
     if @survivor.save
       render json: @survivor, status: :created, location: @survivor, include: [:denunciations]
     else
