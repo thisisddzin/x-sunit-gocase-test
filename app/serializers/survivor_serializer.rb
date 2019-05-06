@@ -4,5 +4,5 @@ class SurvivorSerializer < ActiveModel::Serializer
   has_many :denunciations
 
   link(:self) { survivor_url(object.id) }
-  link(:location) { location_url(object.id) }
+  link(:location) { survivor_location_url(object.id) }
 end

@@ -1,16 +1,25 @@
 Rails.application.routes.draw do
-  # locations routes
-  resources :locations, only: [:index, :show]
-  
-  # denunciations routes
-  get 'denunciations', to: 'denunciations#index'
-  post 'denunciations', to: 'denunciations#create'
    
-  # reports routes
+  # Reports routes.
   get 'reports/abducted_survivors'
   get 'reports/non_abducted_survivors'
   get 'reports/abducted_percentage'
 
-  # survivors routes
-  resources :survivors, only: [:index, :show, :create, :update] # destroy route is not used.
+  #############
+  # RESOURCES #
+  #############
+
+  # Locations routes.
+  resources :locations, only: [:index, :show] do 
+  end
+  
+  # Denunciations routes.
+  resources :denunciations, only: [:index, :create] do
+    resource :survivor
+  end
+
+  # Survivors routes (destroy route is not used).
+  resources :survivors, only: [:index, :show, :create, :update] do
+    resource :location, only: [:index, :show]
+  end
 end
