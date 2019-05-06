@@ -58,7 +58,6 @@ class SurvivorsController < ApplicationController
         :name, 
         :age, 
         :gender, 
-        :abducted, 
         location_attributes: [:id, :latitude, :longitude]
       )
     end
