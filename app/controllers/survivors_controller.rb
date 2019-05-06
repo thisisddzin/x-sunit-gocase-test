@@ -1,5 +1,5 @@
 class SurvivorsController < ApplicationController
-  before_action :set_survivor, only: [:show, :update, :destroy]
+  before_action :set_survivor, only: [:show, :update]
 
   # GET /survivors
   def index
@@ -41,10 +41,10 @@ class SurvivorsController < ApplicationController
     end
   end
 
-  # DELETE /survivors/1
-  def destroy
-    @survivor.destroy
-  end
+  # DELETE /survivors/1 this route was deleted.
+  # def destroy
+  #   @survivor.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
