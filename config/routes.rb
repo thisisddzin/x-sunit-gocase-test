@@ -14,12 +14,13 @@ Rails.application.routes.draw do
   end
   
   # Denunciations routes.
-  resources :denunciations, only: [:index, :create] do
+  resources :denunciations, only: [:index, :show, :create] do
     resource :survivor
   end
 
   # Survivors routes (destroy route is not used).
   resources :survivors, only: [:index, :show, :create, :update] do
     resource :location, only: [:index, :show]
+    resource :denunciations, only: [:show]
   end
 end

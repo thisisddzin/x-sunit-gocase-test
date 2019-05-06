@@ -44,7 +44,9 @@ class SurvivorsController < ApplicationController
 
     else
       render json: {
-        message: "Survivor abducted, so you can't update her."
+        data: {
+          message: "Survivor abducted, so you can't update her."
+        }
       }
     end
   end

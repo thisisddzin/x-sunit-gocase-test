@@ -7,6 +7,15 @@ class DenunciationsController < ApplicationController
     render json: Denunciation.all
   end
 
+  # GET /denunciations/:id
+  def show 
+    if params[:survivor_id]
+      return render json: Denunciation.where(survivor_id: params[:survivor_id])
+    end
+
+    render json: Denunciation.where(survivor_id: params[:id])
+  end
+
   # POST /denunciations
   def create
       @denunciation = Denunciation.new(denunciation_params)
@@ -42,6 +51,7 @@ class DenunciationsController < ApplicationController
       )
     end
 
+    # Verify if the sender already abducted or try report yourself. (action_not_allowed)
     def action_not_allowed
       if @sender.abducted 
         render json: return_message("Action not allowed, you are abducted.")
