@@ -1,24 +1,5 @@
-# README
+# Api Rest X-Sunit-Gocase-Test
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### All documentation and endpoint tests are in: [https://documenter.getpostman.com/view/7402024/S1LvUo4k](https://documenter.getpostman.com/view/7402024/S1LvUo4k)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Developed by: Adenilson Santos
