@@ -34,15 +34,6 @@ class DenunciationsController < ApplicationController
       end
   end
 
-  protected
-    def return_message message
-      {
-        data: {
-          message: message
-        }
-      }
-    end
-
   private
     def denunciation_params
       params.require(:denunciation).permit(

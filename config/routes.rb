@@ -11,11 +11,12 @@ Rails.application.routes.draw do
 
   # Locations routes.
   resources :locations, only: [:index, :show] do 
+    resource :survivor, only: [:index, :show]
   end
   
   # Denunciations routes.
   resources :denunciations, only: [:index, :show, :create] do
-    resource :survivor
+    resource :survivor, only: [:index, :show]
   end
 
   # Survivors routes (destroy route is not used).
