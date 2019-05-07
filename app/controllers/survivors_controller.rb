@@ -55,7 +55,15 @@ class SurvivorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survivor
-      @survivor = Survivor.find(params[:id])
+      survivor_id = params[:id]
+
+      if params[:location_id]
+        survivor_id = Location.find(params[:location_id]).survivor_id
+      elsif params[:denunciation_id]
+        survivor_id = Location.find(params[:denunciation_id]).survivor_id
+      end
+      
+      @survivor = Survivor.find(survivor_id)
     end
 
     # Only allow a trusted parameter "white list" through.
