@@ -60,7 +60,7 @@ class SurvivorsController < ApplicationController
       if params[:location_id]
         survivor_id = Location.find(params[:location_id]).survivor_id
       elsif params[:denunciation_id]
-        survivor_id = Location.find(params[:denunciation_id]).survivor_id
+        survivor_id = Denunciation.find(params[:denunciation_id]).survivor_id
       end
       
       @survivor = Survivor.find(survivor_id)
