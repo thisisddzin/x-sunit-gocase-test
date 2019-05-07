@@ -5,6 +5,7 @@ class ReportsController < ApplicationController
   def abducted_percentage
     render json: {
       survivors_count: @survivors_total_count.to_i,
+      total_denunciation: @all_denunciations,
       non_abducted: {
         amount: @non_abducted_count.to_i,
         percentage: "#{@non_abducted_percentage}%"
@@ -34,6 +35,8 @@ class ReportsController < ApplicationController
 
       @non_abducted_percentage =  get_percentage(@non_abducted_count, @survivors_total_count)
       @abducted_percentage =  get_percentage(@abducted_count , @survivors_total_count)
+
+      @all_denunciations = Denunciation.all.count
     end
 
     def set_survivor
