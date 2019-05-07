@@ -32,8 +32,8 @@ class ReportsController < ApplicationController
       @abducted_count = Survivor.all.where(abducted: true).count.to_f
       @survivors_total_count = @non_abducted_count + @abducted_count
 
-      @non_abducted_percentage =  get_percentage(@non_abducted_count, @survivors_total_count).round(2)
-      @abducted_percentage =  get_percentage(@abducted_count , @survivors_total_count).round(2)
+      @non_abducted_percentage =  get_percentage(@non_abducted_count, @survivors_total_count)
+      @abducted_percentage =  get_percentage(@abducted_count , @survivors_total_count)
     end
 
     def set_survivor
@@ -41,6 +41,6 @@ class ReportsController < ApplicationController
     end
 
     def get_percentage(minor_number, major_number)
-      (minor_number / major_number) * 100
+      ((minor_number / major_number) * 100).round(2)
     end
 end
