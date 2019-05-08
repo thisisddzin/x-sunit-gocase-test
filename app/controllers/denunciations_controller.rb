@@ -46,7 +46,7 @@ class DenunciationsController < ApplicationController
     def action_not_allowed
       if @sender.abducted 
         render json: return_message(:'denunciation.already_abducted_self')
-      elsif params[:sender_id] == params[:survivor_id] 
+      elsif params[:sender_id].to_i == params[:survivor_id].to_i
         render json: return_message(:'denunciation.cant_report_self')
       end
     end
