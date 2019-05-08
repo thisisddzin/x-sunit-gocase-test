@@ -43,7 +43,7 @@ class SurvivorsController < ApplicationController
       end
 
     else
-      render json: return_message("Survivor abducted, so you can't update her.")
+      render json: return_message(:'survivors.already_abducted')
     end
   end
 

@@ -1,0 +1,8 @@
+'pt-BR':
+  survivors: 
+    already_abducted: "Você não pode alterar um sobrevivente que já foi abduzido."
+  denunciation: 
+    already_abducted: "Já foi abduzido."
+    already_denounced: "Você já denunciou esse sobrevivente."
+    already_abducted_self: "Ação não disponível, você já foi abduzido."
+    cant_report_self: "Ação não disponível, você não pode denunciar você mesmo."

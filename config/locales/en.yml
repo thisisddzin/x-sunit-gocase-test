@@ -30,4 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  survivors: 
+    already_abducted: "Survivor abducted, so you can't update her."
+  denunciation: 
+    already_abducted: "Already abducted."
+    already_denounced: "You already denounced him."
+    already_abducted_self: "Action not allowed, you are abducted."
+    cant_report_self: "Action not allowed, you can't report yourself."

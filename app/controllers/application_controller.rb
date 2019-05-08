@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
     def return_message message
       {
         data: {
-          message: message
+          message: I18n.t(message)
         }
       }
     end

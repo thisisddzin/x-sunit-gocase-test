@@ -20,7 +20,7 @@ class DenunciationsController < ApplicationController
   def create
       @denunciation = Denunciation.new(denunciation_params)
       if @survivor.abducted
-        render json: return_message("Already abducted.")
+        render json: return_message(:'denunciation.already_abducted')
       else
         if !denunciation_already_exists(denunciation_params)
           if @denunciation.save
@@ -29,7 +29,7 @@ class DenunciationsController < ApplicationController
             render json: @denunciation.errors, status: :unprocessable_entity
           end
         else
-          render json: return_message("You already denounced him.")
+          render json: return_message(:'denunciation.already_denounced')
         end
       end
   end
@@ -45,9 +45,9 @@ class DenunciationsController < ApplicationController
     # Verify if the sender already abducted or try report yourself. (action_not_allowed)
     def action_not_allowed
       if @sender.abducted 
-        render json: return_message("Action not allowed, you are abducted.")
+        render json: return_message(:'denunciation.already_abducted_self')
       elsif params[:sender_id] == params[:survivor_id] 
-        render json: return_message("Action not allowed, you can't report yourself.")
+        render json: return_message(:'denunciation.cant_report_self')
       end
     end
 
